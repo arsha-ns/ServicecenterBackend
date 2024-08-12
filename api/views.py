@@ -10,8 +10,14 @@ from rest_framework.decorators import action
 
 from rest_framework import authentication,permissions
 
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
 
 class CustomerListCreateView(ListAPIView, CreateAPIView):
+
+    permission_classes=[permissions.IsAuthenticated]
+
+    authentication_classes=[JWTAuthentication]
 
     serializer_class = CustomerSerializer
 
@@ -21,6 +27,11 @@ class CustomerListCreateView(ListAPIView, CreateAPIView):
 
 
 class CustomerRetrieveUpdateDestroyView(RetrieveAPIView, UpdateAPIView, DestroyAPIView):
+    
+    permission_classes=[permissions.IsAuthenticated]
+
+    authentication_classes=[JWTAuthentication]
+
 
     serializer_class = CustomerSerializer
 
@@ -32,6 +43,9 @@ class CustomerRetrieveUpdateDestroyView(RetrieveAPIView, UpdateAPIView, DestroyA
 class WorkCreateView(CreateAPIView):
 
 
+    permission_classes=[permissions.IsAuthenticated]
+
+    authentication_classes=[JWTAuthentication]
 
     serializer_class=WorkSerializer
 
@@ -49,6 +63,11 @@ class WorkCreateView(CreateAPIView):
 
 
 class WorkViewSet(RetrieveAPIView,UpdateAPIView,DestroyAPIView):
+
+    permission_classes=[permissions.IsAuthenticated]
+
+    authentication_classes=[JWTAuthentication]
+
 
     serializer_class=WorkSerializer
 
